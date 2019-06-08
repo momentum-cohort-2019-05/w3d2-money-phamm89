@@ -27,9 +27,9 @@ class Currency:
         """
         All fields must be equal to for the objects to be equal.
         """
-        return (type(self) == type(other) and self.name == other.name
-                and self.code == other.code and self.symbol == other.symbol
-                and self.digits == other.digits)
+        return (type(self) == type(other) and self.name == other.name and
+                self.code == other.code and self.symbol == other.symbol and
+                self.digits == other.digits)
 
 
 class Money:
@@ -50,7 +50,10 @@ class Money:
         Should use the currency symbol if available, else use the code.
         Use the currency digits to determine number of digits to show.
         """
-        pass
+        if self.currency.symbol is not None:
+            return f"{self.currency.symbol}{self.amount:.{self.currency.digits}f}"
+        else:
+            return f"{self.currency.code} {self.amount:.{self.currency.digits}f}"
 
     def __repr__(self):
         return f"<Money {str(self)}>"
@@ -59,8 +62,8 @@ class Money:
         """
         All fields must be equal to for the objects to be equal.
         """
-        return (type(self) == type(other) and self.amount == other.amount
-                and self.currency == other.currency)
+        return (type(self) == type(other) and self.amount == other.amount and
+                self.currency == other.currency)
 
     def add(self, other):
         """

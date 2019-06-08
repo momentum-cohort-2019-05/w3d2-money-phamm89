@@ -5,8 +5,12 @@ name = "pypi"
 
 [packages]
 pytest = "*"
+objgraph = "*"
+xdot = "*"
 
 [dev-packages]
+prospector = "*"
+yapf = "*"
 
 [requires]
 python_version = "3.7"
