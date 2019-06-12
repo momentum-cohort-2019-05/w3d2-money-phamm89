@@ -70,8 +70,8 @@ class Money:
         """
         return (type(self) == type(other) and self.amount == other.amount and
                 self.currency == other.currency)
-
-    def add(self, other):
+    
+    def __add__(self, other):
         """
         Add two money objects of the same currency. If they have different
         currencies, raise a DifferentCurrencyError.
@@ -81,7 +81,7 @@ class Money:
         else: 
             raise DifferentCurrencyError
 
-    def sub(self, other):
+    def __sub__(self, other):
         """
         Subtract two money objects of the same currency. If they have different
         currencies, raise a DifferentCurrencyError.
@@ -91,14 +91,41 @@ class Money:
         else: 
             raise DifferentCurrencyError
 
-    def mul(self, multiplier):
+    def __mul__(self, multiplier):
         """
         Multiply a money object by a number to get a new money object.
         """
         return Money(self.amount * multiplier, self.currency) 
 
-    def div(self, divisor):
+    def __truediv__(self, divisor):
         """
         Divide a money object by a number to get a new money object.
         """
         return Money(self.amount / divisor, self.currency)
+
+    def add(self, other):
+        """
+        Add two money objects of the same currency. If they have different
+        currencies, raise a DifferentCurrencyError.
+        """
+        return self + other
+
+    def sub(self, other):
+        """
+        Subtract two money objects of the same currency. If they have different
+        currencies, raise a DifferentCurrencyError.
+        """
+        return self - other
+
+    def mul(self, multiplier):
+        """
+        Multiply a money object by a number to get a new money object.
+        """
+        return self * multiplier
+
+    def div(self, divisor):
+        """
+        Divide a money object by a number to get a new money object.
+        """
+        return self / divisor
+
